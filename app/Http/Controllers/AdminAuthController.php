@@ -43,7 +43,7 @@ class AdminAuthController extends Controller
 
                 default:
                     if (! $token) {
-                        return $this->unauthenticated('email or password is not match');
+                        return $this->badRequest('email or password is not match');
                     }
 
                     return $this->respondWithToken($token);
@@ -58,7 +58,7 @@ class AdminAuthController extends Controller
         try {
             $admin = auth::guard('admin')->user();
 
-            return $this->success($admin, 'Logged in admin is retrived successfully');
+            return $this->success('Logged in admin is retrived successfully', $admin);
         } catch (Exception $e) {
             return $this->internalServerError();
         }
@@ -76,7 +76,7 @@ class AdminAuthController extends Controller
 
             DB::commit();
 
-            return $this->success($payload, 'Logged in admin is updated successfully');
+            return $this->success('Logged in admin is updated successfully', $payload);
         } catch (Exception $e) {
             return $this->internalServerError();
         }
