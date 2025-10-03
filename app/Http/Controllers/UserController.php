@@ -62,7 +62,7 @@ class UserController extends Controller
             $user->update($payload->toArray());
             DB::commit();
 
-            return $this->success('user is updated successfully', $payload);
+            return $this->success('user is updated successfully', $user);
         } catch (Exception $e) {
             return $this->internalServerError();
         }

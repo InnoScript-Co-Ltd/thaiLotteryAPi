@@ -30,7 +30,7 @@ class UserUpdateRequest extends FormRequest
         return [
             'first_name' => 'nullable | string',
             'last_name' => 'nullable | string',
-            'phonr' => "nullable | unique:users,phone,$userId",
+            'phone' => "nullable | unique:users,phone,$userId",
             'gender' => 'nullable | string',
             'address' => 'nullable | string',
             'nrc' => "nullable | string | unique:users,nrc,$userId",
