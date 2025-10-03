@@ -19,7 +19,7 @@ class UserController extends Controller
             $user = User::create($payload->toArray());
             DB::commit();
 
-            return $this->success($user, 'user is created successfully');
+            return $this->success('user is created successfully', $user);
         } catch (Exception $e) {
             return $this->internalServerError();
         }
@@ -34,7 +34,7 @@ class UserController extends Controller
                 ->filterDateQuery()
                 ->paginationQuery();
 
-            return $this->success($users, 'user list are retrived successfully');
+            return $this->success('user list are retrived successfully', $users);
         } catch (Exception $e) {
             return $this->internalServerError();
         }
@@ -45,7 +45,7 @@ class UserController extends Controller
         try {
             $user = User::findOrFail($id);
 
-            return $this->success($user, 'user is retrived successfully');
+            return $this->success('user is retrived successfully', $user);
         } catch (Exception $e) {
             return $this->internalServerError();
         }
@@ -62,7 +62,7 @@ class UserController extends Controller
             $user->update($payload->toArray());
             DB::commit();
 
-            return $this->success($payload, 'user is updated successfully');
+            return $this->success('user is updated successfully', $payload);
         } catch (Exception $e) {
             return $this->internalServerError();
         }
@@ -79,7 +79,7 @@ class UserController extends Controller
 
             DB::commit();
 
-            return $this->success($user, 'user is deleted successfully');
+            return $this->success('user is deleted successfully', $user);
         } catch (Exception $e) {
             return $this->internalServerError();
         }
